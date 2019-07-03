@@ -25,5 +25,13 @@
 		public function getValue ($key) {
 			return $this->fetchVar[$key];
 		}
+
+		public function num_rows () {
+			return mysqli_num_rows($this->query);
+		}
+
+		public function aff_rows () {
+			return @mysqli_affected_rows($this->connect);
+		}
 	}
 ?>
