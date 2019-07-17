@@ -1,3 +1,14 @@
+<?php
+ include(__DIR__."/../includes/config.php");
+ include(__DIR__."/../includes/sqlConnection.class.php");
+
+ $connect = new Connect();
+
+ $camp_name = $_GET["camp_name"];
+
+?>
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -47,6 +58,9 @@ h1 {
   font-family: 'Kanit', sans-serif;
 }
 
+
+/* ต้องเขียนสำหรับ ซองจดหมาย ด้วย */
+
   </style>
 
 
@@ -59,7 +73,7 @@ h1 {
     </a>
     </div>
 
- <h1><strong>ค่าย นคท. TheActsVengers 2019</strong></h1>
+ <h1><strong>ค่าย <?=$camp_name?></strong></h1>
 
  <div align="center"> 
  <a class="btn btn-success green button" href="addbook.html" role="button">+ เพิ่มสมุดกระจก</a> <a class="btn btn-warning button" href="#" role="button">เปิดกระจกอ่าน</a> 
@@ -68,6 +82,14 @@ h1 {
 <p class="instruction">กดคลิกที่ซองจดหมายเพื่อเขียนข้อความ</p>
 
 
+
+   <!-- ต้องเขียนให้มันดึงข้อมูลจาก table_attendee โดยดึง N จำนวนแถว, display_name, caption (if have) 
+        จากนั้น เขียนให้มัน display รูป icon จดหมาย n ตัว และใส่ display_name ไว้ข้างล่าง และ check if caption ก่อน ถ้ามีก็ให้ใส่ไปด้วย -->
+
+
+
+
+    <!-- เมื่อกดคลิก icon หรือ display_name จะต้องไป leaveMessage.php พร้อมเก็บตัวแปรของ display_name บรรทัดนั้นตามไปด้วย -->
 
 
 
