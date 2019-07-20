@@ -4,7 +4,7 @@
 
   $connect = new Connect();
 
-  $camp_name = $_GET["camp_name"];
+  $camp_name = $_POST["camp_name"];
 
   /* if $camp_code ไม่ซ้ำกับ database MYSQL ก็ไปต่อ ถ้าซ้ำก็วนลูป */
 
