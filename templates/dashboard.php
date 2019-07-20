@@ -1,11 +1,21 @@
 <?php
- include(__DIR__."/../includes/config.php");
- include(__DIR__."/../includes/sqlConnection.class.php");
+  include(__DIR__."/../includes/config.php");
+  include(__DIR__."/../includes/sqlConnection.class.php");
 
- $connect = new Connect();
+  $connect = new Connect();
 
- $camp_name = $_GET["camp_name"];
+  $camp_code = $_GET["camp_code"];
 
+  $query = "SELECT `id`, `camp_name` FROM `table_camp` WHERE `camp_code` = '{$camp_code}'";
+  $connect->query($query);
+  $isCampExist = $connect->num_rows() > 0;
+
+  if ($isCampExist) {
+    while($connect->next_record()) {
+      $camp_name = $connect->getValue("camp_name");
+      $camp_id = $connect->getValue("id");
+    }
+  }
 ?>
 
 
@@ -18,6 +28,10 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
+
 
     <!-- Font from Google -->
     <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
@@ -66,33 +80,59 @@ h1 {
 
   <body>
     <!-- HTML start from here -->
-    
-    <div class="img" >
-      <a href="index.html">
-      <img src="Mirror for Camp logo_White bg.png" alt="logo" class="logo rounded"> 
-    </a>
+    <div class="container">
+      <div class="img" >
+        <a href="index.html">
+        <img src="Mirror for Camp logo_White bg.png" alt="logo" class="logo rounded">
+      </a>
+      </div>
+      <?php
+        if ($isCampExist) {
+      ?>
+          <h1><strong>ค่าย <?=$camp_name?></strong></h1>
+
+          <div align="center">
+            <a class="btn btn-success green button" href="addbook.html" role="button">+ เพิ่มสมุดกระจก</a> <a class="btn btn-warning button" href="#" role="button">เปิดกระจกอ่าน</a>
+          </div>
+
+          <p class="instruction">กดคลิกที่ซองจดหมายเพื่อเขียนข้อความ</p>
+
+          <div class="row">
+            <!-- ต้องเขียนให้มันดึงข้อมูลจาก table_attendee โดยดึง N จำนวนแถว, display_name, caption (if have)
+            จากนั้น เขียนให้มัน display รูป icon จดหมาย n ตัว และใส่ display_name ไว้ข้างล่าง และ check if caption ก่อน ถ้ามีก็ให้ใส่ไปด้วย -->
+            <?php
+              $query = "SELECT `id`, `display_name`, `caption` FROM `table_attendee` WHERE `camp_id` = '{$camp_id}'";
+              $connect->query($query);
+
+              while ($connect->next_record()) {
+                ?>
+                  <div class="envelope-container col-lg-3 col-6 text-center">
+                    <a href="templates/leaveMessage.php?attendee_id=<?=$connect->getValue("id")?>">
+                      <div class="envelope-icon">
+                        <i class="fa fa-envelope"></i>
+                      </div>
+                      <div id="attendee-name"><?=$connect->getValue("display_name")?></div>
+                      <div id="attendee-caption"><?=$connect->getValue("caption")?></div>
+                    </a>
+                  </div>
+                <?php
+              }
+            ?>
+          </div>
+
+          <!-- เมื่อกดคลิก icon หรือ display_name จะต้องไป  พร้อมเก็บตัวแปรของ display_name บรรทัดนั้นตามไปด้วย -->
+      <?php
+        }
+        else {
+        ?>
+          <h1><strong>ไม่พบค่าย กรุณากรอกรหัสค่ายให้ถูกต้อง</strong></h1>
+          <div class="text-center">
+            <a href="../index.html">กลับหน้าแรก</a>
+          </div>
+        <?php
+        }
+      ?>
     </div>
-
- <h1><strong>ค่าย <?=$camp_name?></strong></h1>
-
- <div align="center"> 
- <a class="btn btn-success green button" href="addbook.html" role="button">+ เพิ่มสมุดกระจก</a> <a class="btn btn-warning button" href="#" role="button">เปิดกระจกอ่าน</a> 
-</div>
-
-<p class="instruction">กดคลิกที่ซองจดหมายเพื่อเขียนข้อความ</p>
-
-
-
-   <!-- ต้องเขียนให้มันดึงข้อมูลจาก table_attendee โดยดึง N จำนวนแถว, display_name, caption (if have) 
-        จากนั้น เขียนให้มัน display รูป icon จดหมาย n ตัว และใส่ display_name ไว้ข้างล่าง และ check if caption ก่อน ถ้ามีก็ให้ใส่ไปด้วย -->
-
-
-
-
-    <!-- เมื่อกดคลิก icon หรือ display_name จะต้องไป leaveMessage.php พร้อมเก็บตัวแปรของ display_name บรรทัดนั้นตามไปด้วย -->
-
-
-
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
