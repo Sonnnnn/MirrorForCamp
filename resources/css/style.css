@@ -1,0 +1,113 @@
+html, body {
+  height: 100%;
+}
+
+#page-content {
+  flex: 1 0 auto;
+}
+
+#sticky-footer {
+  bottom: 0;
+  display: block;
+  flex-shrink: none;
+  width: 100%;
+}
+
+.static-top {
+	background-color: #25B344
+}
+/* Other Classes for Page Styling */
+
+.logo {
+	margin-left: 15px;
+	margin-top: 15px;
+	max-height: 5em;
+	max-width: 5em;
+}
+
+h1 {
+  font-family: 'Kanit', sans-serif;
+  text-align: center;
+}
+
+.green {
+  background-color: #25B344;
+}
+
+.button{
+  color: white;
+  font-family: 'Kanit', sans-serif;
+  margin-left : 18px;
+  margin-right: 18px;
+  margin-top: 20px;
+}
+
+.instruction {
+  color: rgb(190, 190, 190);
+  font-family: 'Kanit', sans-serif;
+  font-size: 1.2em;
+  margin-top: 2em;
+  text-align: center;
+}
+
+
+.logo {
+margin-top: 15px;
+}
+
+.font {
+  font-family: 'Kanit', sans-serif;
+}
+
+
+header.masthead {
+  position: relative;
+  background-color: #343a40;
+  background: url("../images/CoverWebsite.jpg") no-repeat center center;
+  background-size: cover;
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+
+.headline {
+    text-shadow: black 2px 2px;
+}
+
+.subheadline {
+    margin-bottom: 2em;
+}
+
+.button {
+  background-color: #25B344;
+  font-family: 'Kanit', sans-serif;
+  color: white;
+}
+
+.icon {
+    color: #25B344;
+}
+
+.features-icons {
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+.features-icons .features-icons-item {
+  max-width: 20rem;
+}
+
+.features-icons .features-icons-item .features-icons-icon {
+  height: 7rem;
+}
+
+.features-icons .features-icons-item .features-icons-icon i {
+  font-size: 4.5rem;
+}
+
+.features-icons .features-icons-item:hover .features-icons-icon i {
+  font-size: 5rem;
+}
+
+.index-text {
+    font-family: 'Kanit:100'
+}

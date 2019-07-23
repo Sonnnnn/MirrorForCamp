@@ -1,105 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>Mirror for Camp - เว็บเขียนกระจกเงาออนไลน์</title>
-
-<!-- Include Header and Footer -->
-<script
-    src="https://code.jquery.com/jquery-3.3.1.js"
-    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-    crossorigin="anonymous">
-</script>
-<script> 
-$(function(){ 
-  $("#header").load("./includes/header.html"); 
-  $("#footer").load("./includes/footer.html"); 
-  $("#bootstrap").load("./includes/bootstrap.html");
-});
-</script> 
-
-<div id="bootstrap"></div>
-
-</head>
-
-<style>
-
-
-.logo {
-margin-top: 15px;
-}
-
-.font {
-  font-family: 'Kanit', sans-serif;
-}
-
-
-header.masthead {
-  position: relative;
-  background-color: #343a40;
-  background: url("resources/images/CoverWebsite.jpg") no-repeat center center;
-  background-size: cover;
-  padding-top: 8rem;
-  padding-bottom: 8rem;
-}
-
-.headline {
-    text-shadow: black 2px 2px;
-}
-
-.subheadline {
-    margin-bottom: 2em;
-}
-
-.button {
-  background-color: #25B344;
-  font-family: 'Kanit', sans-serif;
-  color: white;
-}
-
-.icon {
-    color: #25B344;
-}
-
-.features-icons {
-  padding-top: 7rem;
-  padding-bottom: 7rem;
-}
-
-.features-icons .features-icons-item {
-  max-width: 20rem;
-}
-
-.features-icons .features-icons-item .features-icons-icon {
-  height: 7rem;
-}
-
-.features-icons .features-icons-item .features-icons-icon i {
-  font-size: 4.5rem;
-}
-
-.features-icons .features-icons-item:hover .features-icons-icon i {
-  font-size: 5rem;
-}
-
-.index-text {
-    font-family: 'Kanit:100'
-}
-
-</style>
-
-<body>
-
-<!-- Header Navigation -->
-<div id="header"></div>
-
-
+<?php
+  include(__DIR__."/includes/config.php");
+?>
+<html>
+  <head>
+    <?php
+      include("includes/bootstrap.php");
+    ?>
+  </head>
+  <body>
+    <?php
+      include("includes/header.php");
+    ?>
   <!-- Masthead -->
   <header class="masthead text-white text-center">
     <div class="overlay"></div>
@@ -159,11 +70,9 @@ header.masthead {
           </div>
         </div>
       </section>
-
-
-<!-- Footer -->
-<div id="footer"></div>
-
-</body>
-
+    <?php
+      include("includes/footer.php");
+    ?>
+  </body>
 </html>
+<body>
