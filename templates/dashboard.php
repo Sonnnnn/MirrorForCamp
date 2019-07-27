@@ -49,7 +49,7 @@
 
               while ($connect->next_record()) {
                 ?>
-                  <div class="envelope-container col-lg-3 col-6 text-center">
+                  <div class="envelope-container col-lg-3 col-sm-4 col-6 text-center">
                     <a href="templates/leaveMessage.php?attendee_id=<?=$connect->getValue("id")?>">
                       <div class="envelope-icon">
                         <i class="fa fa-envelope"></i>
@@ -81,4 +81,3 @@
     ?>
   </body>
 </html>
-<body>
