@@ -1,6 +1,7 @@
 <?php
   include(__DIR__."/../includes/config.php");
   include(__DIR__."/../includes/sqlConnection.class.php");
+  include(__DIR__."../includes/bootstrap.html");
 
   $connect = new Connect();
 
@@ -28,25 +29,13 @@
 ?>
 
 <html>
-<html lang="en">
-
 <head>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+<?php
+include(__DIR__."../includes/bootstrap.html");
+?>
 
-  <title>Mirror for Camp - เว็บเขียนกระจกเงาออนไลน์</title>
 </head>
-
-<style>
-.font {
-  font-family: 'Kanit', sans-serif;
-}
-
-</style>
-
 
 <body>
 

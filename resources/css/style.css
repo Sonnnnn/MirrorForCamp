@@ -83,9 +83,15 @@ header.masthead {
   color: white;
 }
 
-.icon {
+.color {
     color: #25B344;
 }
+
+.envelope-size {
+  font-size: 5em;
+}
+
+
 
 .features-icons {
   padding-top: 7rem;
@@ -110,4 +116,9 @@ header.masthead {
 
 .index-text {
     font-family: 'Kanit:100'
+}
+
+footer {
+  margin-top: 5em;
+
 }

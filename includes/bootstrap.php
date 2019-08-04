@@ -8,7 +8,8 @@
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
       <!-- Font from Google -->
       <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
-      <!-- Custom styles for this template -->
+      
+      <!-- Custom styles for this template CSS is from here -->
       <link href="<?=APP_PATH?>/resources/css/landing-page.min.css" rel="stylesheet">
       <link href="<?=APP_PATH?>/resources/css/style.css" rel="stylesheet">
 

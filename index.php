@@ -13,7 +13,7 @@
     ?>
   <!-- Masthead -->
   <header class="masthead text-white text-center">
-    <div class="overlay"></div>
+    <div class="overlay></div>
     <div class="container">
       <div class="row">
         <div class="col-xl-9 mx-auto">
@@ -43,7 +43,7 @@
             <div class="col-lg-4">
               <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
                 <div class="features-icons-icon d-flex">
-                  <i class="m-auto icon"><span class="iconify" data-icon="simple-line-icons:shield"></span></i>
+                  <i class="m-auto color"><span class="iconify" data-icon="simple-line-icons:shield"></span></i>
                 </div>
                 <h3>ความทรงจำไม่เลือนหาย</h3>
                 <p class="lead mb-0">คุณสามารถเรียกดูข้อความในสมุดกระจกออนไลน์นี้ได้ตลอดเวลาและตลอดไป</p>
@@ -52,7 +52,7 @@
             <div class="col-lg-4">
               <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
                 <div class="features-icons-icon d-flex">
-                  <i class="m-auto icon"><span class="iconify" data-icon="simple-line-icons:picture"></span></i>
+                  <i class="m-auto color"><span class="iconify" data-icon="simple-line-icons:picture"></span></i>
                 </div>
                 <h3>เก็บได้มากกว่าข้อความ</h3>
                 <p class="lead mb-0">รูปถ่ายเซลฟี่ อิโมจิ สติ๊กเกอร์น่ารัก ก็เก็บเป็นความทรงจำได้</p>
@@ -61,7 +61,7 @@
             <div class="col-lg-4">
               <div class="features-icons-item mx-auto mb-0 mb-lg-3">
                 <div class="features-icons-icon d-flex">
-                  <i class="m-auto icon"><span class="iconify" data-icon="simple-line-icons:badge"></span></i>
+                  <i class="m-auto color"><span class="iconify" data-icon="simple-line-icons:badge"></span></i>
                 </div>
                 <h3>ช่วยคุณประหยัด</h3>
                 <p class="lead mb-0">ไม่เปลืองกระดาษ ไม่เสียเวลาเตรียม ไม่มีค่าใช้จ่าย</p>
