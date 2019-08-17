@@ -33,7 +33,7 @@
             <a class="btn btn-success green button" href="addbook.php?camp_code=<?=$camp_code?>" role="button">+ เพิ่มสมุดกระจก</a> <a class="btn btn-warning button" href="#" role="button">เปิดกระจกอ่าน</a>
           </div>
 
-          <p class="instruction">กดคลิกที่ซองจดหมายเพื่อเขียนข้อความ</p>
+          <p class="instruction margin">กดคลิกที่ซองจดหมายเพื่อเขียนข้อความ</p>
 
           <div class="row">
             <!-- ต้องเขียนให้มันดึงข้อมูลจาก table_attendee โดยดึง N จำนวนแถว, display_name, caption (if have)
@@ -46,8 +46,8 @@
 
               while ($connect->next_record()) {
                 ?>
-                  <div class="envelope-container col-lg-3 col-sm-4 col-6 text-center">
-                    <a href="templates/leaveMessage.php?attendee_id=<?=$connect->getValue("id")?>">
+                  <div class="envelope-container col-lg-3 col-sm-4 col-6 text-center margin">
+                    <a href="leaveMessage.php?attendee_id=<?=$connect->getValue("id")?>">
                       <div class="envelope-icon">
                         <div class="features-icons-icon d-flex">
                         <i class="m-auto color envelope-size"> <span class="iconify" data-icon="fa-regular:envelope-open" data-inline="false"></span> </i>

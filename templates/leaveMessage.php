@@ -3,10 +3,7 @@
   include(__DIR__."/../includes/sqlConnection.class.php");
   include(__DIR__."/../includes/mirror.engine.class.php");
 
-  $camp_code = $_GET["camp_code"];
-
-  if (isset($_POST["submit"]) && $_POST["submit"] == "submit") {
-    createBook($_POST, $camp_code);
+  $attendee_id = $_GET["attendee_id"];
   }
 ?>
 <html>
@@ -15,15 +12,11 @@
       include("../includes/bootstrap.php");
     ?>
   </head>
+
   <body>
-    <?php
 
-      $connect = new Connect();
-      $mirror = new Mirror($camp_code);
 
-      $camp_id = $mirror->getCampID();
-    ?>
-
+  
     <!-- HTML start from here -->
 
     <div class="card font">
@@ -63,26 +56,3 @@
 
   </body>
 </html>
-
-<?php
-  function createBook ($data, $camp_code) { // <!-- บันทึกข้อมูล แต่ยังไม่รู้วิธีในการบันทึกให้ตรงกับ camp_code ที่เขาเข้ามา -->
-    $connect = new Connect();
-    $mirror = new Mirror($camp_code);
-
-    $display_name = $data["display_name"];
-    $caption = $data["caption"];
-    $password = $data["password"];
-
-    /* Should have validation rule here */
-
-    $query = "INSERT INTO `table_attendee` (`camp_id`, `display_name`, `caption`, `password`) VALUE ('{$mirror->getCampID()}', '{$display_name}', '{$caption}', '{$password}')";
-    $connect->query($query);
-
-    /* Should have cross check here */
-
-
-  /*ต้องทำให้มันกลับไป dashboard แบบเก็บ camp_code อันเก่าไว้ด้วย */
-  
-    header("location: ".APP_PATH."/templates/dashboard.php?camp_code={$camp_code}");
-  }
-?>
