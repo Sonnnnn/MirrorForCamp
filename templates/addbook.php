@@ -29,7 +29,8 @@
     <div class="card font">
       <div class="card-header">
         <div>
-            <a href="dashboard.php?camp_code=<?=$camp_code?>"><p>กลับหน้าหลักค่าย</p></a> </div> <!-- ต้องทำให้มันกลับไป dashboard แบบเก็บ camp_code อันเก่าไว้ด้วย -->
+            <a href="dashboard.php?camp_code=<?=$camp_code?>"><p>กลับหน้าหลักค่าย</p></a>  <!-- ต้องทำให้มันกลับไป dashboard แบบเก็บ camp_code อันเก่าไว้ด้วย -->
+        </div> 
         <div class="bold" align="center">
           <h1>เพิ่มสมุดกระจกเงา</h1>
         </div>
