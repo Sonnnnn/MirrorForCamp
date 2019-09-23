@@ -30,7 +30,7 @@
           <h1><strong><?=$camp_name?></strong></h1>
 
           <div align="center">
-            <a class="btn btn-success green button" href="addbook.php?camp_code=<?=$camp_code?>" role="button">+ เพิ่มสมุดกระจก</a> 
+            <a class="btn btn-success green button" href="addbook.php?camp_code=<?=$camp_code?>" role="button">+ เพิ่มสมุดกระจก</a>
             <a class="btn btn-warning button" href="#" role="button">เปิดกระจกอ่าน</a>
           </div>
 
@@ -47,7 +47,7 @@
               while ($connect->next_record()) {
                 ?>
                   <div class="envelope-container col-lg-3 col-sm-4 col-6 text-center margin">
-                    <a href="leaveMessage.php?attendee_id=<?=$connect->getValue("id")?>">
+                    <a href="leaveMessage.php?attendee_id=<?=$connect->getValue("id")?>&camp_code=<?=$camp_code?>">
 
                       <div class="envelope-icon">
                         <div class="features-icons-icon d-flex">
