@@ -46,13 +46,19 @@
       <div class="card-body">
         <form method="POST">
               <div class="form-group col-12 col-md-9 mb-2 mb-md-0">
-                  <label for="sender_name">ชื่อเล่น *</label>
-                  <input type="text" name="sender_name" id="sender_name" class="form-control form-control-lg font" required>
+                  <label for="sender_name">ชื่อเล่น</label>
+                  <input type="text" name="sender_name" id="sender_name" class="form-control form-control-lg font">
 
                   <br>
 
-                  <label for="caption">ข้อความ</label>
+                  <label for="caption">ข้อความ *</label>
                   <textarea name="message" id="message" class="form-control form-control-lg font" required=""></textarea>
+
+                  <br>
+
+                  <label for="photo_upload">รูปแห่งความทรงจำ</label>
+                  <br>
+                  <input type="file" name="photo_upload" id="photo_upload" accept="image/*">
 
               </div>
             <button type="submit" name="submit" value="submit" class="btn button font">ส่งข้อความ</button>
@@ -69,10 +75,11 @@
 
     $sender_name = $data["sender_name"];
     $message = $data["message"];
+    $photo_upload = $data["photo_upload"];
 
     /* Should have validation rule here */
 
-    $query = "INSERT INTO `table_message` (`attendee_id`, `message`, `sender`) VALUE ('{$attendee_id}', '{$sender_name}', '{$message}')";
+    $query = "INSERT INTO `table_message` (`attendee_id`, `message`, `sender`,`picture`) VALUE ('{$attendee_id}', '{$message}', '{$sender_name}', '{$photo_upload}')";
     $connect->query($query);
 
     /* Should have cross check here */
