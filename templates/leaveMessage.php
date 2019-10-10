@@ -2,13 +2,17 @@
   include(__DIR__."/../includes/config.php");
   include(__DIR__."/../includes/sqlConnection.class.php");
   include(__DIR__."/../includes/mirror.engine.class.php");
+  include (__DIR__."/../includes/aws/aws-autoloader.php");
+
+  use Aws\Exception\AwsException;
+  use Aws\S3\S3Client;
 
   $connect = new Connect();
   $attendee_id = $_GET["attendee_id"];
   $camp_code = $_GET["camp_code"];
 
   if (isset($_POST["submit"]) && $_POST["submit"] == "submit") {
-    createMessage($_POST, $attendee_id, $camp_code);
+    createMessage($_POST, $_FILES, $attendee_id, $camp_code);
   }
 
   $query = "SELECT `display_name`, `caption` FROM `table_attendee` WHERE `id` = '{$attendee_id}'";
@@ -44,7 +48,7 @@
 
 
       <div class="card-body">
-        <form method="POST">
+        <form action="<?=$_SERVER["PHP_SELF"]?>?attendee_id=<?=$attendee_id?>&camp_code=<?=$camp_code?>" method="POST" enctype="multipart/form-data">
               <div class="form-group col-12 col-md-9 mb-2 mb-md-0">
                   <label for="sender_name">ชื่อเล่น</label>
                   <input type="text" name="sender_name" id="sender_name" class="form-control form-control-lg font">
@@ -58,7 +62,7 @@
 
                   <label for="photo_upload">รูปแห่งความทรงจำ</label>
                   <br>
-                  <input type="file" name="photo_upload" id="photo_upload" accept="image/*">
+                  <input type="file" name="photo_upload" id="photo_upload" accept="image/jpeg">
 
               </div>
             <button type="submit" name="submit" value="submit" class="btn button font">ส่งข้อความ</button>
@@ -69,17 +73,43 @@
 </html>
 
 <?php
-  function createMessage ($data, $attendee_id, $camp_code) {
+  function createMessage ($data, $files, $attendee_id, $camp_code) {
     $connect = new Connect();
     $mirror = new Mirror($camp_code);
 
     $sender_name = $data["sender_name"];
     $message = $data["message"];
-    $photo_upload = $data["photo_upload"];
 
     /* Should have validation rule here */
 
-    $query = "INSERT INTO `table_message` (`attendee_id`, `message`, `sender`,`picture`) VALUE ('{$attendee_id}', '{$message}', '{$sender_name}', '{$photo_upload}')";
+    $query = "INSERT INTO `table_message` (`attendee_id`, `message`, `sender`) VALUE ('{$attendee_id}', '{$message}', '{$sender_name}')";
+    $connect->query($query);
+
+    $messageID = $connect->insertID();
+
+    $bucketName = "mirrorforcamp";
+    $region = "ap-southeast-1";
+    $s3 = new Aws\S3\S3Client(array(
+      "region" => $region,
+      "version" => "latest",
+      "credentials" => array(
+        "key" => "AKIAJNLW6S6VPSISSU5A",
+        "secret" => "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"
+      )
+    ));
+
+    try {
+      $s3->putObject(array(
+        "Bucket"  => $bucketName,
+        "Key"   => "{$camp_code}/{$messageID}.jpg",
+        "Body"    => file_get_contents($files["photo_upload"]["tmp_name"])
+      ));
+    }
+    catch (Aws\S3\Exception\S3Exception $e) {
+      echo "Can't upload image to S3";
+    }
+
+    $query = "UPDATE `table_message` SET `picture` = 'https://{$bucketName}.s3-{$region}.amazonaws.com/{$camp_code}/{$messageID}.jpg' WHERE `id` = '{$messageID}'";
     $connect->query($query);
 
     /* Should have cross check here */
