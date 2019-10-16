@@ -33,5 +33,9 @@
 		public function aff_rows () {
 			return @mysqli_affected_rows($this->connect);
 		}
+
+		public function insertID () {
+			return mysqli_insert_id($this->connect);
+		}
 	}
 ?>
