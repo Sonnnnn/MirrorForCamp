@@ -35,7 +35,7 @@
         </div>
 
 
-    <!-- ต้องทำให้มันดึงรายชื่อใน db_attendee ที่ตรงกับ camp_id นั้นออกมาให้หมด เสร็จแล้ว validate password ให้ตรงกับ attendee_name-->
+    <!-- ต้องทำให้มันดึงรายชื่อใน db_attendee ที่ตรงกับ camp_id นั้นออกมาให้หมด -->
     <div class="card-body font">
     <form>
         <div class="form-group">
@@ -57,7 +57,16 @@
         <div class="form-check">
         </div>
         <button type="submit" class="btn button">เปิดอ่าน</button>
+
+        <!-- validate password ของ display_name นั้นๆ ถ้าไม่ตรงกัน ต้องไม่ให้ทำ action-->
+
+        
       </form>
       </div>
+
+
+
+
+
   </body>
 </html>
