@@ -25,7 +25,7 @@
     ?>
 
     <!-- HTML start from here -->
-    <div class="card font"> 
+    <div class="card font">
       <div class="card-header">
         <div>
             <a href="dashboard.html"><p>x</p></a> </div>
@@ -37,24 +37,25 @@
 
     <!-- ต้องทำให้มันดึงรายชื่อใน db_attendee ที่ตรงกับ camp_id นั้นออกมาให้หมด -->
     <?php
-              $query = "SELECT `id`, `display_name`, `caption` FROM `table_attendee` WHERE `camp_id` = '{$camp_id}'";
+              $query = "SELECT `id`, `display_name`, `caption` FROM `table_attendee` WHERE `camp_id` = '{$camp_id}' ORDER BY `display_name` ASC";
               $connect->query($query);
                 ?>
 
 
     <div class="card-body font">
     <form action="inbox.php?attendee_id=<?=$connect->getValue("id")?>">
+        <label>ชื่อเล่น *</label>
         <div class="form-group">
-          <div class="dropdown">
-            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              ชื่อ
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">กิ๊ก</a>
-              <a class="dropdown-item" href="#">เต้</a>
-              <a class="dropdown-item" href="#">อาร์ม</a>
-            </div>
-          </div>
+          <select name="attendee" id="attendee" class="form-control form-control-lg font">
+            <option value="">กรุณาเลือกชื่อ</option>
+            <?php
+            while ($connect->next_record()) {
+            ?>
+              <option value="<?=$connect->getValue("id")?>"><?=$connect->getValue("display_name")?></option>
+            <?php
+            }
+            ?>
+          </select>
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">รหัสเปิดสมุด</label>
