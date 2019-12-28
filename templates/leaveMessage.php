@@ -3,18 +3,14 @@
   include(__DIR__."/../includes/sqlConnection.class.php");
   include(__DIR__."/../includes/mirror.engine.class.php");
   include (__DIR__."/../includes/aws/aws-autoloader.php");
-
   use Aws\Exception\AwsException;
   use Aws\S3\S3Client;
-
   $connect = new Connect();
   $attendee_id = $_GET["attendee_id"];
   $camp_code = $_GET["camp_code"];
-
   if (isset($_POST["submit"]) && $_POST["submit"] == "submit") {
     createMessage($_POST, $_FILES, $attendee_id, $camp_code);
   }
-
   $query = "SELECT `display_name`, `caption` FROM `table_attendee` WHERE `id` = '{$attendee_id}'";
   $connect->query($query);
   if ($connect->num_rows() > 0) {
@@ -73,75 +69,15 @@
 </html>
 
 <?php
-
-
-// Upload photo to AWS S3
-// AWS Info
-$bucketName = 'mirrorforcamp';
-$IAM_KEY = 'AKIATUF67ALFBMJ3SP3J';
-$IAM_SECRET = '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';
-// Connect to AWS
-try {
-  // You may need to change the region. It will say in the URL when the bucket is open
-  // and on creation.
-  $s3 = S3Client::factory(
-    array(
-      'credentials' => array(
-        'key' => $IAM_KEY,
-        'secret' => $IAM_SECRET
-      ),
-      'version' => 'latest',
-      'region'  => 'Asia Pacific (Singapore)'
-    )
-  );
-} catch (Exception $e) {
-  // We use a die, so if this fails. It stops here. Typically this is a REST call so this would
-  // return a json object.
-  die("Error: " . $e->getMessage());
-}
-
-// For this, I would generate a unqiue random string for the key name. But you can do whatever.
-$keyName = 'photoupload/' . basename($_FILES["photo_upload"]['tmp_name']);
-// ต้องแก้ไหมอันข้างล่างนี่
-$pathInS3 = 'https://s3.amazonaws.com/' . $bucketName . '/' . $keyName;
-// Add it to S3
-try {
-  // Uploaded:
-  $file = $_FILES["photo_upload"]['tmp_name'];
-  $s3->putObject(
-    array(
-      'Bucket'=>$bucketName,
-      'Key' =>  $keyName,
-      'SourceFile' => $file,
-      'StorageClass' => 'REDUCED_REDUNDANCY'
-    )
-  );
-} catch (S3Exception $e) {
-  die('Error:' . $e->getMessage());
-} catch (Exception $e) {
-  die('Error:' . $e->getMessage());
-}
-echo 'Done';
-
-
-
-
-// Insert Answer into our database
-
-  function createMessage ($data, $attendee_id, $camp_code) {
+  function createMessage ($data, $files, $attendee_id, $camp_code) {
     $connect = new Connect();
     $mirror = new Mirror($camp_code);
-
     $sender_name = $data["sender_name"];
     $message = $data["message"];
-
     /* Should have validation rule here */
-
     $query = "INSERT INTO `table_message` (`attendee_id`, `message`, `sender`) VALUE ('{$attendee_id}', '{$message}', '{$sender_name}')";
     $connect->query($query);
-
     $messageID = $connect->insertID();
-
     $bucketName = "mirrorforcamp";
     $region = "ap-southeast-1";
     $s3 = new Aws\S3\S3Client(array(
@@ -152,7 +88,6 @@ echo 'Done';
         "secret" => "oSdyw8S2eO92GKcg7CBt8okjnE7PP6WKRJVogNHv"
       )
     ));
-
     try {
       $s3->putObject(array(
         "Bucket"  => $bucketName,
@@ -163,12 +98,9 @@ echo 'Done';
     catch (Aws\S3\Exception\S3Exception $e) {
       echo "Can't upload image to S3";
     }
-
     $query = "UPDATE `table_message` SET `picture` = 'https://{$bucketName}.s3-{$region}.amazonaws.com/{$camp_code}/{$messageID}.jpg' WHERE `id` = '{$messageID}'";
     $connect->query($query);
-
     /* Should have cross check here */
-
     header("location: ".APP_PATH."/templates/dashboard.php?camp_code={$camp_code}");
   }
 ?>
