@@ -18,7 +18,7 @@
         include(__DIR__."/../includes/mirror.engine.class.php");
 
 
-        $attendee_id = $_GET["attendee_id"];
+        $display_name = $_GET["display_name"];
 
         $connect = new Connect();
       //  $mirror = new Mirror($attendee_id);
@@ -29,10 +29,10 @@
       ?>
 
 
-            <!-- สร้างตาราง เหมือน inbox email ให้คนคลิก แล้วมี pop-up box เด้งขึ้นมาให้อ่านข้อความ โดยดึงข้อมูลจาก db_message เทียบตาม row ตามชื่อผู้เขียน -->
-            <h1><strong>Inbox กล่องข้อความของคุณ</strong></h1>
+<!-- สร้างตาราง เหมือน inbox email ให้คนคลิก แล้วมี pop-up box เด้งขึ้นมาให้อ่านข้อความ โดยดึงข้อมูลจาก db_message เทียบตาม row ตามชื่อผู้เขียน -->
+<h1><strong>กล่องข้อความของ <?=$display_name?></strong></h1>
 
-            <table class="table table-hover">
+<table class="table table-hover">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -57,19 +57,6 @@
 
 </table>
 
-
-
-      <?php
-        }
-        else {
-        ?>
-          <h1><strong>รหัสผ่านไม่ถูกต้อง ลองอีกครั้งซิ</strong></h1>
-          <div class="text-center">
-          <a href="dashboard.php?camp_code=<?=$camp_code?>">กลับหน้าหลัก</a>
-          </div>
-        <?php
-        }
-      ?>
     </div>
     <?php
       include("../includes/footer.php");

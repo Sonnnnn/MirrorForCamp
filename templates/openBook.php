@@ -36,8 +36,14 @@
 
 
     <!-- ต้องทำให้มันดึงรายชื่อใน db_attendee ที่ตรงกับ camp_id นั้นออกมาให้หมด -->
+    <?php
+              $query = "SELECT `id`, `display_name`, `caption` FROM `table_attendee` WHERE `camp_id` = '{$camp_id}'";
+              $connect->query($query);
+                ?>
+
+
     <div class="card-body font">
-    <form>
+    <form action="inbox.php?attendee_id=<?=$connect->getValue("id")?>">
         <div class="form-group">
           <div class="dropdown">
             <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -60,7 +66,7 @@
 
         <!-- validate password ของ display_name นั้นๆ ถ้าไม่ตรงกัน ต้องไม่ให้ทำ action-->
 
-        
+
       </form>
       </div>
 

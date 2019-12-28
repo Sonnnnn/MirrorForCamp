@@ -45,6 +45,7 @@ include(__DIR__."../includes/bootstrap.html");
   ?>
   <h1>ยินดีด้วย "<?=$camp_name?>" ได้เปิดใช้งานแล้ว</h1><br>
     <p>รหัสค่ายของคุณคือ <strong><?=$camp_code?><strong></p>
+    <p>จดรหัสค่ายเอาไว้เลย ห้ามลืมเด็ดขาด!</p>
   <?php
     }
     else {
