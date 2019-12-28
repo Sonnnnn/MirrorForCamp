@@ -31,7 +31,7 @@
 
           <div align="center">
             <a class="btn btn-success green button" href="addbook.php?camp_code=<?=$camp_code?>" role="button">+ เพิ่มสมุดกระจก</a>
-            <a class="btn btn-warning button" href="#" role="button">เปิดกระจกอ่าน</a>
+            <a class="btn btn-warning button" href="openBook.php?camp_code=<?=$camp_code?>" role="button">เปิดกระจกอ่าน</a>
           </div>
 
 
