@@ -84,8 +84,8 @@
       "region" => $region,
       "version" => "latest",
       "credentials" => array(
-        "key" => "AKIAJNLW6S6VPSISSU5A",
-        "secret" => "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"
+        "key" => "AKIAJRHHIOQAMFBTUAJA",
+        "secret" => "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"
       )
     ));
     try {
