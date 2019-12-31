@@ -84,7 +84,7 @@
       "region" => $region,
       "version" => "latest",
       "credentials" => array(
-        "key" => "AKIAJRHHIOQAMFBTUAJA",
+        "key" => "AKIAIQONEPXTF4CP3AAA",
         "secret" => ""
       )
     ));
