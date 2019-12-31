@@ -85,7 +85,7 @@
       "version" => "latest",
       "credentials" => array(
         "key" => "AKIAJRHHIOQAMFBTUAJA",
-        "secret" => "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"
+        "secret" => ""
       )
     ));
     try {
